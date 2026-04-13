@@ -4,99 +4,613 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Qingqing Yan · Tongji University</title>
-    <!-- 字体与图标库 -->
+    <!-- Fonts & Icons -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: "Inter", sans-serif; background: #fafafa; color: #1e1e2a; line-height: 1.5; }
-        a { text-decoration: none; color: #2c5f8a; }
-        a:hover { color: #1a3e5c; text-decoration: underline; }
-        .wrapper { max-width: 1300px; margin: 2rem auto; padding: 0 1.5rem; display: flex; flex-wrap: wrap; gap: 2rem; }
-        .sidebar { flex: 1 1 300px; background: white; border-radius: 20px; padding: 2rem 1.5rem; box-shadow: 0 10px 25px -5px rgba(0,0,0,0.05); border: 1px solid #f0f0f5; height: fit-content; }
-        .main { flex: 3 1 600px; }
-        .card { background: white; border-radius: 20px; padding: 2rem; margin-bottom: 2rem; box-shadow: 0 10px 25px -5px rgba(0,0,0,0.03); border: 1px solid #f0f0f5; }
-        .avatar { width: 120px; height: 120px; background: linear-gradient(145deg, #2b5876, #1e3c58); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 1.5rem; color: white; font-size: 3.2rem; border: 3px solid white; }
-        .section-title { font-size: 1.1rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.03em; color: #1e3a5f; margin: 1.8rem 0 1.2rem; }
-        .tag { background: #eef4fa; color: #1e4b6e; padding: 0.3rem 1rem; border-radius: 30px; font-size: 0.8rem; font-weight: 500; }
-        .pub-badge { background: #d4e2f0; color: #153e5a; font-size: 0.7rem; padding: 0.15rem 0.7rem; border-radius: 30px; display: inline-block; margin-left: 0.5rem; }
-        .divider { height: 1px; background: #e2e8f0; margin: 1.5rem 0; }
-        .honor-year { font-weight: 600; color: #1d4e73; min-width: 70px; display: inline-block; }
-        @media (max-width: 750px) { .wrapper { flex-direction: column; } }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Inter", sans-serif;
+            background-color: #fafafa;
+            color: #1e1e2a;
+            line-height: 1.5;
+        }
+
+        a {
+            text-decoration: none;
+            color: #2c5f8a;
+            transition: color 0.2s;
+        }
+
+        a:hover {
+            color: #1a3e5c;
+            text-decoration: underline;
+        }
+
+        .wrapper {
+            max-width: 1300px;
+            margin: 2rem auto;
+            padding: 0 1.5rem;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+
+        /* ---------- SIDEBAR ---------- */
+        .sidebar {
+            flex: 1 1 300px;
+            background: white;
+            border-radius: 20px;
+            padding: 2rem 1.5rem;
+            box-shadow: 0 10px 25px -5px rgba(0,0,0,0.05), 0 8px 10px -6px rgba(0,0,0,0.02);
+            height: fit-content;
+            border: 1px solid #f0f0f5;
+        }
+
+        .profile {
+            text-align: left;
+            margin-bottom: 1.8rem;
+        }
+
+        .avatar {
+            width: 120px;
+            height: 120px;
+            background: linear-gradient(145deg, #2b5876, #1e3c58);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            color: white;
+            font-size: 3.2rem;
+            font-weight: 400;
+            box-shadow: 0 12px 18px -8px rgba(0,35,70,0.15);
+            border: 3px solid white;
+        }
+
+        .profile h1 {
+            font-size: 2rem;
+            font-weight: 600;
+            letter-spacing: -0.01em;
+            color: #0b1c2b;
+            margin-bottom: 0.3rem;
+        }
+
+        .profile .subhead {
+            font-size: 1.1rem;
+            font-weight: 400;
+            color: #3f5b74;
+            margin-bottom: 0.8rem;
+        }
+
+        .profile .affiliation {
+            font-size: 0.95rem;
+            color: #4a6479;
+            margin-bottom: 1.2rem;
+            border-left: 3px solid #aac7df;
+            padding-left: 1rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            margin-bottom: 0.7rem;
+            font-size: 0.95rem;
+            color: #2e445b;
+        }
+
+        .contact-item i {
+            width: 1.3rem;
+            color: #2c5f8a;
+            font-size: 1.1rem;
+        }
+
+        .divider {
+            height: 1px;
+            background: #e2e8f0;
+            margin: 1.8rem 0 1.5rem 0;
+        }
+
+        .section-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.03em;
+            color: #1e3a5f;
+            margin-bottom: 1.2rem;
+        }
+
+        .edu-item {
+            margin-bottom: 1.2rem;
+        }
+
+        .edu-degree {
+            font-weight: 600;
+            color: #0b1c2b;
+        }
+
+        .edu-meta {
+            font-size: 0.9rem;
+            color: #516f86;
+            margin-top: 0.2rem;
+        }
+
+        .interest-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 0.5rem;
+        }
+
+        .tag {
+            background: #eef4fa;
+            color: #1e4b6e;
+            padding: 0.3rem 1rem;
+            border-radius: 30px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        /* ---------- MAIN CONTENT ---------- */
+        .main {
+            flex: 3 1 600px;
+            min-width: 0;
+        }
+
+        .card {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 10px 25px -5px rgba(0,0,0,0.03), 0 8px 10px -6px rgba(0,0,0,0.02);
+            border: 1px solid #f0f0f5;
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .card-header i {
+            font-size: 1.5rem;
+            color: #1e3a5f;
+            background: #e2ebf3;
+            padding: 0.5rem;
+            border-radius: 12px;
+            margin-right: 0.8rem;
+        }
+
+        .card-header h2 {
+            font-size: 1.6rem;
+            font-weight: 500;
+            letter-spacing: -0.02em;
+            color: #0e2a3b;
+        }
+
+        .pub-item, .project-item, .honor-item {
+            margin-bottom: 1.4rem;
+            border-bottom: 1px dashed #dde5ed;
+            padding-bottom: 1.2rem;
+        }
+
+        .pub-item:last-child, .project-item:last-child, .honor-item:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+
+        .pub-title {
+            font-weight: 650;
+            font-size: 1.05rem;
+            color: #0f293f;
+        }
+
+        .pub-authors {
+            font-size: 0.9rem;
+            color: #3f5567;
+            margin: 0.2rem 0 0.1rem;
+        }
+
+        .pub-venue {
+            font-size: 0.9rem;
+            color: #4d687e;
+            font-style: italic;
+            display: inline-block;
+            margin-right: 10px;
+        }
+
+        .pub-badge {
+            background: #d4e2f0;
+            color: #153e5a;
+            font-size: 0.7rem;
+            font-weight: 600;
+            padding: 0.15rem 0.7rem;
+            border-radius: 30px;
+            display: inline-block;
+            margin-left: 0.5rem;
+        }
+
+        .pub-link {
+            font-size: 0.8rem;
+            font-weight: 500;
+            background: transparent;
+            border: 1px solid #b6c9db;
+            padding: 0.2rem 0.8rem;
+            border-radius: 30px;
+            margin-left: 0.3rem;
+            color: #1e3a5f;
+            white-space: nowrap;
+            transition: all 0.15s;
+        }
+
+        .pub-link i {
+            margin-right: 4px;
+            font-size: 0.7rem;
+        }
+
+        .pub-link:hover {
+            background: #1e3a5f;
+            color: white;
+            border-color: #1e3a5f;
+            text-decoration: none;
+        }
+
+        .project-title {
+            font-weight: 650;
+            color: #0b2a41;
+        }
+
+        .project-meta {
+            font-size: 0.9rem;
+            color: #47647c;
+        }
+
+        .honor-year {
+            font-weight: 600;
+            color: #1d4e73;
+            min-width: 70px;
+            display: inline-block;
+        }
+
+        .btn-pdf {
+            background: transparent;
+            border: 1px solid #b6c9db;
+            color: #1e3a5f;
+            padding: 0.3rem 1rem;
+            border-radius: 40px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            margin-left: 0.8rem;
+            transition: all 0.15s;
+        }
+
+        .btn-pdf:hover {
+            background: #1e3a5f;
+            color: white;
+            border-color: #1e3a5f;
+            text-decoration: none;
+        }
+
+        .patent-item, .book-item {
+            margin-bottom: 0.9rem;
+        }
+
+        .footer-note {
+            text-align: right;
+            font-size: 0.8rem;
+            color: #8a9fb0;
+            margin-top: 0.5rem;
+        }
+
+        @media (max-width: 750px) {
+            .wrapper {
+                flex-direction: column;
+            }
+            .sidebar {
+                width: 100%;
+            }
+            .pub-link {
+                display: inline-block;
+                margin-top: 4px;
+            }
+        }
+
+        .card, .sidebar {
+            transition: transform 0.2s ease;
+        }
+        .card:hover, .sidebar:hover {
+            transform: translateY(-3px);
+        }
     </style>
 </head>
 <body>
 <div class="wrapper">
-    <!-- 左侧栏：完全按简历内容填充 -->
+    <!-- 左侧栏 -->
     <aside class="sidebar">
         <div class="profile">
             <div class="avatar">Y</div>
             <h1>Qingqing Yan</h1>
-            <div style="font-size:1.1rem; color:#3f5b74;">Postdoctoral Fellow</div>
-            <div style="font-size:0.95rem; color:#4a6479; margin: 0.5rem 0 1rem; border-left:3px solid #aac7df; padding-left:1rem;">
-                Tongji University · Control Science and Engineering<br>
-                Supervisor: Prof. Qijun Chen · Ph.D. Advisor: Prof. Chengju Liu
+            <div class="subhead">Postdoctoral Fellow</div>
+            <div class="affiliation">
+                Tongji University<br>
+                College of Electronics and Information Engineering<br>
+                Control Science and Engineering
             </div>
         </div>
-        <div><i class="fas fa-envelope"></i> yanqingqing [at] tongji.edu.cn</div>
-        <div style="margin-top:0.5rem;"><i class="fas fa-map-marker-alt"></i> Shanghai, China</div>
-        <div class="divider"></div>
-        <div class="section-title">Education</div>
-        <div><strong>Ph.D. Control Science & Eng.</strong><br>Tongji University, 2018–2024</div>
-        <div style="margin-top:0.8rem;"><strong>CSC Exchange</strong><br>University of Oulu, Finland, 2018</div>
-        <div style="margin-top:0.8rem;"><strong>B.Eng. Automation</strong><br>Chang'an University, 2014–2018</div>
-        <div class="section-title">Research Interests</div>
-        <div style="display:flex; flex-wrap:wrap; gap:0.5rem;">
-            <span class="tag">Robotics</span><span class="tag">Computer Vision</span><span class="tag">Embodied AI</span>
-            <span class="tag">Semantic Segmentation</span><span class="tag">Autonomous Driving</span>
+        
+        
+        <div class="contact-item">
+            <i class="fas fa-map-marker-alt"></i>
+            <span>Shanghai, China</span>
         </div>
-        <div class="section-title">Membership & Review</div>
-        <div>▪ Chinese Association of Automation</div>
-        <div>▪ Reviewer: Inf. Fusion, TNNLS, EAAI, ICRA, IROS</div>
+        <div class="contact-item">
+            <i class="fas fa-envelope"></i>
+            <a href="mailto:qyan_0131@tongji.edu.cn">Email</a>
+        </div>
+        <div class="contact-item">
+            <i class="fab fa-google"></i>
+            <a href="scholar.google.com/citations?hl=en&user=p5ko9mQAAAAJ" target="_blank">Google Scholar</a>
+        </div>
+        <div class="contact-item">
+            <i class="fab fa-github"></i>
+            <a href="github.com/qyan0131" target="_blank">Github</a>
+        </div>
+        
+        <div class="divider"></div>
+        
+        <div class="section-title">Education</div>
+        <div class="edu-item">
+            <div class="edu-degree">Ph.D. in Control Science and Engineering</div>
+            <div class="edu-meta">Tongji University, 2018 – 2024</div>
+            <div class="edu-meta" style="font-size:0.85rem;">Advisor: Prof. Chengju Liu</div>
+        </div>
+        <div class="edu-item">
+            <div class="edu-degree">CSC Exchange Student</div>
+            <div class="edu-meta">University of Oulu, Finland, Feb – Jun 2018</div>
+            <div class="edu-meta">Computer Science and Engineering</div>
+        </div>
+        <div class="edu-item">
+            <div class="edu-degree">B.Eng. in Automation</div>
+            <div class="edu-meta">Chang'an University, 2014 – 2018</div>
+        </div>
+        
+        <div class="divider"></div>
+        
+        <div class="section-title">Research Interests</div>
+        <div class="interest-tags">
+            <span class="tag">Robotics</span>
+            <span class="tag">Computer Vision</span>
+            <span class="tag">Embodied AI</span>
+            <span class="tag">Semantic Segmentation</span>
+            <span class="tag">Autonomous Driving</span>
+            <span class="tag">Vision-Language Navigation</span>
+        </div>
+        
+        <div class="divider"></div>
+        <div class="section-title">Advisors & Mentors</div>
+        <div style="margin-bottom: 0.5rem; font-size:0.95rem;">
+            <span style="font-weight:500;">Postdoc Supervisor:</span> Prof. Qijun Chen
+        </div>
+        <div style="font-size:0.95rem;">
+            <span style="font-weight:500;">Ph.D. Advisor:</span> Prof. Chengju Liu
+        </div>
+        <div style="margin-top:1rem; font-size:0.9rem; color:#3b5f7a;">
+            <i class="fas fa-users"></i> Member of Chinese Association of Automation<br>
+            <i class="fas fa-pen"></i> Reviewer: Information Fusion, TNNLS, EAAI, ICRA, IROS
+        </div>
     </aside>
     
-    <!-- 右侧主要内容（精简但保留所有关键信息） -->
+    <!-- 右侧主要内容区域 -->
     <main class="main">
+        <!-- About -->
         <section class="card">
-            <h2 style="display:flex; align-items:center; gap:0.5rem;"><i class="fas fa-user-astronaut"></i>About</h2>
-            <p>Postdoc at Tongji Robotics & AI Lab. Research on robot perception, real‑time semantic segmentation, vision‑language navigation, and trustworthy autonomous systems.</p>
-            <p style="margin-top:0.8rem;"><i class="fas fa-trophy" style="color:#c98a1e;"></i> <strong>Highlights:</strong> Young Elite Scientist (CAST) 2024 · Shanghai Super Postdoc 2025 · Shanghai Outstanding Graduate 2024 · IROS Best Cognitive Paper Finalist.</p>
+            <div class="card-header">
+                <i class="fas fa-user-astronaut"></i>
+                <h2>About</h2>
+            </div>
+            <p style="margin-bottom: 1rem; font-size: 1rem; color: #1f3c52;">
+                I am a postdoctoral fellow at Tongji University, working with Prof. Qijun Chen in the Robotics and Artificial Intelligence Lab. 
+                My research focuses on robot perception, real-time semantic segmentation, vision-language navigation, and trustworthy autonomous systems.
+                I received my Ph.D. from Tongji University under the supervision of Prof. Chengju Liu.
+            </p>
+            <p style="font-size: 0.95rem; color: #3f5f79;">
+                <i class="fas fa-trophy" style="margin-right: 6px; color:#c98a1e;"></i>  
+                <strong>Recent highlights:</strong> Youth Talent Support Program for PhD Students by CAST (2024), Shanghai Super Postdoctoral Program (2025), 
+                Shanghai Outstanding Graduate (2024), and Best Cognitive Paper Finalist at IROS 2024.
+            </p>
         </section>
         
+        <!-- News & Honors -->
         <section class="card">
-            <h2><i class="fas fa-flask"></i> Research Projects</h2>
-            <div><strong>PI, NSFC Young Fund (C)</strong> – Visual Information Decoding via Optic Nerve Response · 2026–2028 · ¥300k</div>
-            <div style="margin-top:0.8rem;"><strong>Key Participant, MIIT 2030 Major Project</strong> – Safe Human‑Machine Co‑driving · 2020–2024 · ¥26.46M</div>
-            <div style="margin-top:0.8rem;"><strong>Participant, NSFC Key Projects</strong> (62233013, 62333017) – Autonomous control & unmanned terminal driving · 2023–2028</div>
-            <div style="margin-top:0.8rem;"><strong>Participant, NSFC General</strong> (62173248, 62473295) – Social navigation & vision‑language perception</div>
+            <div class="card-header">
+                <i class="fas fa-bullhorn"></i>
+                <h2>News & Honors</h2>
+            </div>
+            <div class="honor-item">
+                <span class="honor-year">2025</span> Shanghai “Super Postdoctoral” Incentive Plan
+            </div>
+            <div class="honor-item">
+                <span class="honor-year">2025</span> Shanghai AI Society — Youth Outstanding Paper Award
+            </div>
+            <div class="honor-item">
+                <span class="honor-year">2025</span> Tongji University Excellent Doctoral Dissertation
+            </div>
+            <div class="honor-item">
+                <span class="honor-year">2024</span> Youth Talent Support Program for PhD Students, China Association for Science and Technology (CAST)
+            </div>
+            <div class="honor-item">
+                <span class="honor-year">2024</span> Best Cognitive Paper Finalist, IROS 2024
+            </div>
+            <div class="honor-item">
+                <span class="honor-year">2024</span> Outstanding Graduate of Shanghai Municipality
+            </div>
+            <div class="honor-item">
+                <span class="honor-year">2019–2024</span> RoboCup China Open — SPL Champion (6 times) & SSPL/OPL Champion
+            </div>
         </section>
         
+        <!-- Research Projects -->
         <section class="card">
-            <h2><i class="fas fa-file-alt"></i> Selected Publications</h2>
-            <div><strong>Decoupling Semantic and Localization …</strong> <em>Information Fusion 2024</em> <span class="pub-badge">IF 15.5</span></div>
-            <div style="margin-top:0.6rem;"><strong>DR‑Block: Convolutional Dense Reparameterization …</strong> <em>IEEE TCSVT 2024</em> <span class="pub-badge">IF 11.1</span></div>
-            <div style="margin-top:0.6rem;"><strong>RoboSeg: Real‑Time Semantic Segmentation …</strong> <em>IEEE TSMC 2020</em> <span class="pub-badge">IF 8.7</span></div>
-            <div style="margin-top:0.6rem;"><strong>NDNet: Space‑wise Multiscale …</strong> <em>IEEE TNNLS 2022</em> (2nd author) <span class="pub-badge">IF 8.9</span></div>
-            <div style="margin-top:0.6rem;"><strong>HoloParser / HoloSeg / FDLNet</strong> – ICRA 2022 (Oral), ICRA 2023, IROS 2024 (Oral, Best Paper Finalist)</div>
-            <p style="margin-top:1rem;"><a href="#">📄 Full list (18 papers, 11 Q1 journals)</a></p>
+            <div class="card-header">
+                <i class="fas fa-flask"></i>
+                <h2>Research Projects</h2>
+            </div>
+            <div class="project-item">
+                <div class="project-title">Visual Information Decoding via Optic Nerve Frequency Response</div>
+                <div class="project-meta"><strong>PI</strong> · NSFC Young Scientists Fund (C) · 2026–2028 · ¥300k</div>
+            </div>
+            <div class="project-item">
+                <div class="project-title">Safe and Trustworthy Human-Machine Co-driving System</div>
+                <div class="project-meta">Key participant · MIIT 2030 “New Generation AI” Major Project · 2020–2024 · ¥26.46M</div>
+            </div>
+            <div class="project-item">
+                <div class="project-title">Modeling and Autonomous Control of Intelligent Unmanned Systems</div>
+                <div class="project-meta">Participant · NSFC Key Project (62233013) · 2023–2027 · ¥2.88M</div>
+            </div>
+            <div class="project-item">
+                <div class="project-title">Autonomous Driving Theory for Unmanned Terminals</div>
+                <div class="project-meta">Participant · NSFC Key Project (62333017) · 2024–2028 · ¥2.28M</div>
+            </div>
+            <div class="project-item">
+                <div class="project-title">Behavior Optimization under Social Norms & Vision-Language Navigation</div>
+                <div class="project-meta">Participant · NSFC General Projects (62173248, 62473295) · 2022–2028</div>
+            </div>
+            <div class="project-item">
+                <div class="project-title">Multimodal Intelligent Robot – Environmental Perception (Defense Innovation)</div>
+                <div class="project-meta">Participant · 2018–2019 · ¥1M</div>
+            </div>
         </section>
         
+        <!-- 代表论文 (每篇均添加访问链接) -->
         <section class="card">
-            <h2><i class="fas fa-medal"></i> Honors & Awards</h2>
-            <div><span class="honor-year">2025</span> Shanghai Super Postdoctoral Fellow · Shanghai AI Society Youth Paper Award</div>
-            <div><span class="honor-year">2024</span> CAST Young Elite Scientist · Shanghai Outstanding Graduate · IROS Best Cognitive Paper Finalist</div>
-            <div><span class="honor-year">2019–2024</span> RoboCup China Open: SPL Champion (6x), @Home SSPL/OPL Champion</div>
-            <div><span class="honor-year">2019,2021</span> National Scholarship · Tongji Excellent Ph.D. Scholarship</div>
+            <div class="card-header">
+                <i class="fas fa-file-alt"></i>
+                <h2>Selected Publications</h2>
+            </div>
+            <p style="margin-bottom: 1rem; font-size:0.9rem; color:#3f627c;">
+                <i class="fas fa-chevron-circle-right"></i> Full list: 18 papers (11 Q1 journals, top conferences ICRA/IROS)
+            </p>
+            
+            <!-- 论文条目，每个都带有链接 -->
+            <div class="pub-item">
+                <div class="pub-title">Decoupling Semantic and Localization for Semantic Segmentation via Magnitude-Aware and Phase-Sensitive Learning</div>
+                <div class="pub-authors"><strong>Q. Yan</strong>, et al. (First author)</div>
+                <div class="pub-venue">Information Fusion, 2024 <span class="pub-badge">IF 15.5</span></div>
+                <a href="#" class="pub-link" title="Access paper (placeholder)"><i class="fas fa-external-link-alt"></i> DOI</a>
+                <a href="#" class="pub-link" title="PDF (placeholder)"><i class="fas fa-file-pdf"></i> PDF</a>
+            </div>
+            <div class="pub-item">
+                <div class="pub-title">DR-Block: Convolutional Dense Reparameterization for CNN Generalization Free Improvement</div>
+                <div class="pub-authors"><strong>Q. Yan</strong>, et al. (First author)</div>
+                <div class="pub-venue">IEEE TCSVT, 2024 <span class="pub-badge">IF 11.1</span></div>
+                <a href="#" class="pub-link" title="Access paper (placeholder)"><i class="fas fa-external-link-alt"></i> DOI</a>
+                <a href="#" class="pub-link" title="PDF (placeholder)"><i class="fas fa-file-pdf"></i> PDF</a>
+            </div>
+            <div class="pub-item">
+                <div class="pub-title">RoboSeg: Real-Time Semantic Segmentation on Computationally Constrained Robots</div>
+                <div class="pub-authors"><strong>Q. Yan</strong>, et al. (First author)</div>
+                <div class="pub-venue">IEEE TSMC: Systems, 2020 <span class="pub-badge">IF 8.7</span></div>
+                <a href="#" class="pub-link" title="Access paper (placeholder)"><i class="fas fa-external-link-alt"></i> DOI</a>
+                <a href="#" class="pub-link" title="PDF (placeholder)"><i class="fas fa-file-pdf"></i> PDF</a>
+            </div>
+            <div class="pub-item">
+                <div class="pub-title">NDNet: Space-wise Multiscale Representation Learning via Neighbor Decoupling for Real-time Driving Scene Parsing</div>
+                <div class="pub-authors">..., <strong>Q. Yan</strong> (2nd author)</div>
+                <div class="pub-venue">IEEE TNNLS, 2022 <span class="pub-badge">IF 8.9</span></div>
+                <a href="#" class="pub-link" title="Access paper (placeholder)"><i class="fas fa-external-link-alt"></i> DOI</a>
+                <a href="#" class="pub-link" title="PDF (placeholder)"><i class="fas fa-file-pdf"></i> PDF</a>
+            </div>
+            <div class="pub-item">
+                <div class="pub-title">HoloParser: Holistic Visual Parsing for Real-time Semantic Segmentation in Autonomous Driving</div>
+                <div class="pub-authors">..., <strong>Q. Yan</strong> (2nd author)</div>
+                <div class="pub-venue">IEEE TIM, 2022 <span class="pub-badge">IF 5.6</span></div>
+                <a href="#" class="pub-link" title="Access paper (placeholder)"><i class="fas fa-external-link-alt"></i> DOI</a>
+                <a href="#" class="pub-link" title="PDF (placeholder)"><i class="fas fa-file-pdf"></i> PDF</a>
+            </div>
+            <div class="pub-item">
+                <div class="pub-title">FDLNet: Boosting Real-time Semantic Segmentation by Image-size Convolution via Frequency Domain Learning</div>
+                <div class="pub-authors"><strong>Q. Yan</strong>, et al. (First author)</div>
+                <div class="pub-venue">ICRA 2023 (Poster)</div>
+                <a href="#" class="pub-link" title="Access paper (placeholder)"><i class="fas fa-external-link-alt"></i> DOI</a>
+                <a href="#" class="pub-link" title="PDF (placeholder)"><i class="fas fa-file-pdf"></i> PDF</a>
+            </div>
+            <div class="pub-item">
+                <div class="pub-title">HoloSeg: An Efficient Holographic Segmentation Network for Real-time Scene Parsing</div>
+                <div class="pub-authors">..., <strong>Q. Yan</strong> (2nd author)</div>
+                <div class="pub-venue">ICRA 2022 (Oral)</div>
+                <a href="#" class="pub-link" title="Access paper (placeholder)"><i class="fas fa-external-link-alt"></i> DOI</a>
+                <a href="#" class="pub-link" title="PDF (placeholder)"><i class="fas fa-file-pdf"></i> PDF</a>
+            </div>
+            <div class="pub-item">
+                <div class="pub-title">Multimodal Evolutionary Encoder for Continuous Vision Language Navigation</div>
+                <div class="pub-authors">..., <strong>Q. Yan</strong> (5th author)</div>
+                <div class="pub-venue">IROS 2024 (Oral) <span class="pub-badge">Best Cognitive Paper Finalist</span></div>
+                <a href="#" class="pub-link" title="Access paper (placeholder)"><i class="fas fa-external-link-alt"></i> DOI</a>
+                <a href="#" class="pub-link" title="PDF (placeholder)"><i class="fas fa-file-pdf"></i> PDF</a>
+            </div>
+            <p style="margin-top: 1.2rem;">
+                <a href="#" style="font-weight:500; border-bottom: 1px dotted;"><i class="fas fa-external-link-alt"></i> View all 18 publications with links (TCSVT, TNNLS, EAAI, KBS, etc.)</a>
+            </p>
         </section>
         
+        <!-- 专利 & 专著 -->
         <section class="card">
-            <h2><i class="fas fa-book"></i> Books & Patents</h2>
-            <div>📘 <em>Visual Environment Perception Technology</em> (3/4), Tsinghua Univ. Press, 2025</div>
-            <div style="margin-top:0.8rem;">🔬 Patents: CN202210841726.2, CN202210843903.0 (helmet detection), ZL201710249970.9</div>
+            <div class="card-header">
+                <i class="fas fa-book"></i>
+                <h2>Books & Patents</h2>
+            </div>
+            <div class="book-item">
+                <span style="font-weight:600;">📘 Visual Environment Perception Technology — Scene Semantic Parsing Methods and Applications</span><br>
+                <span style="font-size:0.9rem;">Co-author (3/4). Tsinghua University Press, 2025.</span>
+                <a href="#" class="pub-link" style="margin-left:10px;"><i class="fas fa-link"></i> Publisher</a>
+            </div>
+            <div style="margin: 1rem 0 0.5rem; font-weight:500;">Patents (selected)</div>
+            <div class="patent-item">• CN202210841726.2 – Fast visual detection of safety helmets based on convolutional vertical integration (3/4) 
+                <a href="#" class="pub-link" style="margin-left:8px;"><i class="fas fa-gavel"></i> patent</a>
+            </div>
+            <div class="patent-item">• CN202210843903.0 – Safety helmet detection via structural re-parameterization for edge devices (3/4)
+                <a href="#" class="pub-link" style="margin-left:8px;"><i class="fas fa-gavel"></i> patent</a>
+            </div>
+            <div class="patent-item">• ZL201710249970.9 – Music playing device following reading position of paper book (5/5)
+                <a href="#" class="pub-link" style="margin-left:8px;"><i class="fas fa-gavel"></i> patent</a>
+            </div>
         </section>
-        <div style="text-align:right; opacity:0.7;">Qingqing Yan · Updated 2026</div>
+        
+        <!-- 荣誉与奖励全览 -->
+        <section class="card">
+            <div class="card-header">
+                <i class="fas fa-medal"></i>
+                <h2>Honors & Awards</h2>
+            </div>
+            <div style="display:grid; grid-template-columns: 1fr 1fr; gap: 0.5rem 1rem;">
+                <div>🏅 National Scholarship (2019)</div>
+                <div>🏅 Tongji Excellent Ph.D. Scholarship (2021)</div>
+                <div>🏅 Tongji Outstanding Student (2019,2021)</div>
+                <div>🏅 RoboCup SPL Outstanding Contribution (2019)</div>
+                <div>🏆 RoboCup SPL National Champion (2019–2024)</div>
+                <div>🏆 RoboCup Tianjin Int'l Invitational 1st Prize (2019,2023)</div>
+                <div>🏆 RoboCup@Home SSPL National Champion (2019,2020,2022)</div>
+                <div>🏆 RoboCup@Home OPL National Champion (2020) & 2nd (2022)</div>
+                <div>📜 Excellent Ph.D. Graduate of Shanghai (2024)</div>
+                <div>📜 Tongji Excellent Dissertation (2025)</div>
+                <div>📜 Shanghai AI Society Youth Paper Award (2025)</div>
+            </div>
+            <div style="margin-top:1.5rem; background: #f2f7fc; padding: 0.8rem 1.2rem; border-radius: 18px;">
+                <i class="fas fa-gavel"></i> <strong>Professional service:</strong> Reviewer for Information Fusion, TNNLS, EAAI, ICRA, IROS; Member of Chinese Association of Automation.
+            </div>
+        </section>
+        
+        <div class="footer-note">
+            <i class="far fa-copy"></i> Qingqing Yan · Tongji University · Updated 2026
+        </div>
     </main>
 </div>
 </body>
